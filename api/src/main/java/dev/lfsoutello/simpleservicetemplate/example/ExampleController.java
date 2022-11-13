@@ -13,6 +13,6 @@ public class ExampleController {
 
     @GetMapping
     public String getExample() {
-        return exampleService.getExampleString();
+        return null;
     }
 }

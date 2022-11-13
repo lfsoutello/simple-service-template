@@ -11,7 +11,6 @@ public class ExampleService {
 
     public String createExample() {
         Example example = new Example();
-        example
-        exampleRepository.save();
+        return null;
     }
 }

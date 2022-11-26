@@ -11,22 +11,23 @@ public class ExampleService {
 
     private final ExampleRepository exampleRepository;
 
-    public Example create(Long id, String text) {
+    public ExampleDTO create(String text) {
         Example example = new Example();
-        example.setId(id);
         example.setText(text);
-        return exampleRepository.save(example);
+        return new ExampleDTO(exampleRepository.save(example));
     }
 
-    public Optional<Example> read(Long id) {
-        return exampleRepository.findById(id);
+    public ExampleDTO read(Long id) {
+        Example example = exampleRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Example not found"));
+        return new ExampleDTO(example);
     }
 
-    public Example update(Long id, String text) {
+    public ExampleDTO update(Long id, String text) {
         Example example = exampleRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Example not found"));
         example.setText(text);
-        return exampleRepository.save(example);
+        return new ExampleDTO(exampleRepository.save(example));
     }
 
     public void delete(Long id) {
